@@ -7,6 +7,9 @@ library(xcms)
 if(Sys.info()[4]=="DZ2626UTPURUCKE"){
   cdf.path <- "k:\\git\\Snyderetal2016_biomarkers\\cdf"
 }
+if(Sys.info()[4]=="stp-air-3.local" || Sys.info()[4]=="stp-air.local" || Sys.info()[4]=="stp-air"){
+  cdf.path <- "~/git/Snyderetal2016_biomarkers/cdf"
+}
 if(Sys.info()[4]=="marcias laptop name here"){
   cdf.path<-("~/Dropbox/amphib_dermalexposure/Biomarkers/Metabolomics/R_code/cdf")
 }
