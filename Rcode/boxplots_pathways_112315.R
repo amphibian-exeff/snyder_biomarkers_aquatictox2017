@@ -4,7 +4,11 @@ library(reshape2) # for reformatting table
 # import metabolite names for IDs 
 #ID_METABOLITE_MattFinalID2_112315 <- read.csv("~/Dropbox/amphib_metabolomics/DATA/gt_stage22_TOF041515/xcms_polar/results/ID_METABOLITE_MattFinalID2_112315.csv")
 #View(ID_METABOLITE_MattFinalID2_112315)
-ID_METABOLITE_GTMattFinalID2_120115 <- read.csv("~/Dropbox/amphib_metabolomics/DATA/gt_stage22_TOF041515/xcms_polar/results/ID_METABOLITE_GTMattFinalID2_120115.csv")
+gt_dir <- "~/git/Snyderetal2016_biomarkers/data_in/gt_stage22_TOF041515/xcms_polar/results/"
+gt_metabolites <- paste(gt_dir, "ID_METABOLITE_GTMattFinalID2_120115.csv", sep = "")
+file.exists(gt_metabolites)
+ID_METABOLITE_GTMattFinalID2_120115 <- read.csv(gt_metabolites)
+View(ID_METABOLITE_GTMattFinalID2_120115)
 # import pre-processed bin data 
 class <- read.csv("~/Dropbox/amphib_metabolomics/DATA/gt_stage22_TOF041515/xcms_polar/results/WorkDir_allmz2/WorkDir_allmz9000_noutlier/Preprocessing_Data_a/class.csv")
 ProcessedTable <- read.csv("~/Dropbox/amphib_metabolomics/DATA/gt_stage22_TOF041515/xcms_polar/results/WorkDir_allmz2/WorkDir_allmz9000_noutlier/Preprocessing_Data_a/ProcessedTable.csv")
