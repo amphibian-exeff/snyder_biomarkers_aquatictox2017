@@ -2,15 +2,18 @@
 # import metabolite names for IDs 
 #ID_METABOLITE_MattFinalID2_112315 <- read.csv("~/Dropbox/amphib_metabolomics/DATA/gt_stage22_TOF041515/xcms_polar/results/ID_METABOLITE_MattFinalID2_112315.csv")
 #View(ID_METABOLITE_MattFinalID2_112315)
-gt_dir <- paste(gt_root, "data_in/gt_stage22_TOF041515/xcms_polar/results/", sep="")
 gt_metabolites <- paste(gt_dir, "ID_METABOLITE_GTMattFinalID2_120115.csv", sep = "")
 file.exists(gt_metabolites)
 ID_METABOLITE_GTMattFinalID2_120115 <- read.csv(gt_metabolites)
-View(ID_METABOLITE_GTMattFinalID2_120115)
+#View(ID_METABOLITE_GTMattFinalID2_120115)
 
 # import pre-processed bin data 
-class <- read.csv("~/Dropbox/amphib_metabolomics/DATA/gt_stage22_TOF041515/xcms_polar/results/WorkDir_allmz2/WorkDir_allmz9000_noutlier/Preprocessing_Data_a/class.csv")
-ProcessedTable <- read.csv("~/Dropbox/amphib_metabolomics/DATA/gt_stage22_TOF041515/xcms_polar/results/WorkDir_allmz2/WorkDir_allmz9000_noutlier/Preprocessing_Data_a/ProcessedTable.csv")
+file_data_class <- paste(gt_data, "class.csv", sep="")
+file.exists(file_data_class)
+class <- read.csv(file_data_class)
+file_processed_table <- paste(gt_data, "ProcessedTable.csv", sep="")
+file.exists(file_processed_table)
+ProcessedTable <- read.csv(file_processed_table)
 data2<-cbind(class$V1, ProcessedTable)
 #View(data2)
 #subset data by the 200 top ranked bins with SVM-RFE
@@ -64,6 +67,7 @@ for (metabolite in unique.metabolites){
 
 #rename metabolites based on KEGG names
 #import csv for name translation
+#stp right here
 GT_ID_Kegg_120215 <- read.csv("~/Dropbox/amphib_metabolomics/DATA/gt_stage22_TOF041515/xcms_polar/results/GT_ID_Kegg_120215.csv")
 names(GT_ID_Kegg_120215)
 x4<-merge(x3, GT_ID_Kegg_120215, by.x = "mattID1", by.y = "mattID1" )
