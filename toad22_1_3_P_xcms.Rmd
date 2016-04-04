@@ -35,7 +35,7 @@ if(Sys.info()[4]=="Marcias-MacBook-Pro.local"){
   outdir2<-path.expand("~/Dropbox/amphib_metabolomics/DATA/toad_stage22_1_3_p")
   cdf.path<-setwd(metdir2)
 }
-file.exists(metdir)
+file.exists(metdir2)
 #### import cdf files 
 #cdf.path<-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_stage22_round1/polar/polar_toad1_cdf/xcms")
 ```
