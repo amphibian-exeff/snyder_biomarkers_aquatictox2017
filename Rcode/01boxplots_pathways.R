@@ -67,8 +67,8 @@ for (metabolite in unique.metabolites){
 
 #rename metabolites based on KEGG names
 #import csv for name translation
-#stp right here
-GT_ID_Kegg_120215 <- read.csv("~/Dropbox/amphib_metabolomics/DATA/gt_stage22_TOF041515/xcms_polar/results/GT_ID_Kegg_120215.csv")
+gt_id_kegg <- paste(gt_data, "GT_ID_Kegg_120215.csv", sep="")
+GT_ID_Kegg_120215 <- read.csv(gt_id_kegg)
 names(GT_ID_Kegg_120215)
 x4<-merge(x3, GT_ID_Kegg_120215, by.x = "mattID1", by.y = "mattID1" )
 #test<-x3[which(x3$mattID1=="n-acetyl-l-tyrosine"),] #ys
@@ -78,8 +78,9 @@ dim(x4)
 #subset data for control and 1250 dose w Kegg ID
 xc1250b<-subset(x4,x4$`class$V1`=="1" | x4$`class$V1`=="5" )
 # print pdf of all boxplots
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures")
-pdf("GT_boxplots120315.pdf")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures")
+gt_boxplots <- paste(gt_figures, "GT_boxplots120315.pdf", sep="")
+pdf(gt_boxplots)
 # boxplot for control and 1250 dose TOF ID
 unique.metabolites<-unique(xc1250b$KeggMatch)
 for (metabolite in unique.metabolites){
@@ -90,7 +91,8 @@ dev.off()
 ##################################################################################
 #### plot individual box plots for metabolites in top pathways from overlap GT and AT
 # box plots for aminoacyl-trna biosynthesis GT
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+setwd(gt_figures)
 #pdf("GT_boxplots_aminoacyl_120315.pdf")
 # in aminoacyl tRNA biosynthesis pathway
 aminoacyl.metabs.gt<-as.factor(c("L-Asparagine", "L-Aspartic acid", "Glycine", "L-Serine", 
@@ -108,7 +110,8 @@ for (metabolite in aminoacyl.metabs.gt){
 #dev.off()
 
 #box plots for purine metabolism
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+setwd(gt_figures)
 purine.metabs.gt<-as.factor(c("Urea", "Glycine", "Uric acid", "Inosine", "Adenosine", "Guanosine"))
 #pdf("GT_boxplots_purinemetabolism_120315.pdf")
 # boxplot for control and 1250 dose for GT metabolites 
@@ -124,7 +127,8 @@ for (metabolite in purine.metabs.gt){
 #dev.off()
 
 # box plots for glycine, serine, and threonine metabolism
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+setwd(gt_figures)
 #pdf("GT_boxplots_glycinemetabolism_120315.pdf")
 glycine.metabs.GT<-as.factor(c("L-Tryptophan", "L-Serine", "Glycine", "L-Threonine", "L-Aspartic acid"))
 # boxplot for control and 1250 dose for GT metabolites 
@@ -140,7 +144,8 @@ for (metabolite in glycine.metabs.GT){
 #dev.off()
 
 #box plots for purine/prymidine/arginine/urea metabolism from paper
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots/")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots/")
+setwd(gt_figures)
 purine2.metabs.gt<-as.factor(c("Uric acid", "Inosine", "Adenosine", "Glycine", 
                               "Guanosine", "Creatinine", "glutamate", "D-Ribose",
                               "L-Alanine", "L-Asparagine", "L-Lysine", "L-Proline", 
@@ -158,7 +163,8 @@ for (metabolite in purine2.metabs.gt){
 
 
 # create pdf of boxplots in purine/arginine/urea pathway to compare with paper
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+setwd(gt_figures)
 pdf("GT_boxplots_purine2121715.pdf")
 purine2.metabs.gt<-as.factor(c("Glycine", "Uric acid", "Inosine", "Adenosine", 
                                "Guanosine", "Creatinine", "glutamate", "D-Ribose",
@@ -236,7 +242,8 @@ View(AT_Name_Kegg_match120215)
 y5<-merge(y4, AT_Name_Kegg_match120215, by.x = "MattID1", by.y = "Query" )
 #View(y5)
 #print pdf of box plots AT 
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures")
+setwd(gt_figures)
 pdf("AT_boxplots.pdf")
 # boxplot for control and 1250 dose Kegg ID
 unique.metabolites<-unique(y5$Match)
@@ -251,7 +258,8 @@ dev.off()
 ######################################################################################
 #### plot individual box plots as jpg for 3 top pathways from overlap between AT and GT
 # box plots for aminoacyl tRNA biosynthesis AT
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+setwd(gt_figures)
 #pdf("AT_boxplots_aminoacyl_120315.pdf")
 # boxplot for control and 1250 dose for AT metabolites 
 # in Aminoacyl tRNA biosynthesis pathway
@@ -267,7 +275,8 @@ for (metabolite in aminoacyl.metabs.AT){
 #dev.off()
 
 # box plots for purine metabolism AT
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
+setwd(gt_figures)
 #pdf("AT_boxplots_purinemetabolism_120315.pdf")
 # boxplot for control and 1250 dose for AT metabolites 
 # in Aminoacyl tRNA biosynthesis pathway
@@ -283,7 +292,8 @@ for (metabolite in purine.metabs.AT){
 #dev.off()
 
 # box plots for glycine metabolism AT
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots/")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots/")
+setwd(gt_figures)
 #pdf("AT_boxplots_glycinemetabolism_120315.pdf")
 # boxplot for control and 1250 dose for AT metabolites 
 # in Aminoacyl tRNA biosynthesis pathway
@@ -305,7 +315,8 @@ purine2.metabs.at<-as.factor(c("Inosine",  "Glycine", "adenosine",
                                 "L-Proline"))
 # boxplot for control and 1250 dose for AT metabolites 
 # in purine metabolism biosynthesis pathway
-setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots/")
+#setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots/")
+setwd(gt_figures)
 for (metabolite in purine2.metabs.at){
   mypath<-file.path("purineagain2", paste("ATboxplot_",metabolite, ".jpg", sep=""))
   jpeg(file=mypath)
