@@ -100,7 +100,7 @@ aminoacyl.metabs.gt<-as.factor(c("L-Asparagine", "L-Aspartic acid", "Glycine", "
                 "L-Tyrosine", "L-Tryptophan", "L-Proline", "L-Leucine"))
 
 for (metabolite in aminoacyl.metabs.gt){
-  mypath<-file.path("aminoacyl", paste("GTboxplot_",metabolite, ".jpg", sep=""))
+  mypath <- paste(gt_figures, "aminoacyl_GTboxplot_", metabolite, ".jpg", sep="")
   jpeg(file=mypath)
   temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
   boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,
@@ -117,7 +117,7 @@ purine.metabs.gt<-as.factor(c("Urea", "Glycine", "Uric acid", "Inosine", "Adenos
 # boxplot for control and 1250 dose for GT metabolites 
 # in purine metabolism biosynthesis pathway
 for (metabolite in purine.metabs.gt){
-  mypath<-file.path("purine", paste("GTboxplot_",metabolite, ".jpg", sep=""))
+  mypath <- paste(gt_figures, "purine_GTboxplot_",metabolite, ".jpg", sep="")
   jpeg(file=mypath)
   temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
   boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,
@@ -134,7 +134,7 @@ glycine.metabs.GT<-as.factor(c("L-Tryptophan", "L-Serine", "Glycine", "L-Threoni
 # boxplot for control and 1250 dose for GT metabolites 
 # in glycine metabolism biosynthesis pathway
 for (metabolite in glycine.metabs.GT){
-  mypath<-file.path("glycine", paste("GTboxplot_",metabolite, ".jpg", sep=""))
+  mypath <- paste(gt_figures, "glycine_GTboxplot_",metabolite, ".jpg", sep="")
   jpeg(file=mypath)
   temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
   boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,las=2, 
@@ -153,7 +153,7 @@ purine2.metabs.gt<-as.factor(c("Uric acid", "Inosine", "Adenosine", "Glycine",
 # boxplot for control and 1250 dose for GT metabolites 
 # in purine metabolism biosynthesis pathway
 for (metabolite in purine2.metabs.gt){
-  mypath<-file.path("purineagain", paste("GTboxplot_",metabolite, ".jpg", sep=""))
+  mypath <- paste(gt_figures, "purineagain_GTboxplot_",metabolite, ".jpg", sep="")
   jpeg(file=mypath)
   temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
   boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,
@@ -165,7 +165,8 @@ for (metabolite in purine2.metabs.gt){
 # create pdf of boxplots in purine/arginine/urea pathway to compare with paper
 #setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots")
 setwd(gt_figures)
-pdf("GT_boxplots_purine2121715.pdf")
+mypath <- paste(gt_figures, "GT_boxplots_purine2121715.pdf", sep="")
+pdf(mypath)
 purine2.metabs.gt<-as.factor(c("Glycine", "Uric acid", "Inosine", "Adenosine", 
                                "Guanosine", "Creatinine", "glutamate", "D-Ribose",
                                "L-Alanine", "L-Asparagine", "L-Lysine", "L-Proline", 
@@ -244,7 +245,8 @@ y5<-merge(y4, AT_Name_Kegg_match120215, by.x = "MattID1", by.y = "Query" )
 #print pdf of box plots AT 
 #setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures")
 setwd(gt_figures)
-pdf("AT_boxplots.pdf")
+mypath <- paste(gt_figures, "AT_boxplots.pdf", sep="")
+pdf(mypath)
 # boxplot for control and 1250 dose Kegg ID
 unique.metabolites<-unique(y5$Match)
 for (metabolite in unique.metabolites){
@@ -265,7 +267,7 @@ setwd(gt_figures)
 # in Aminoacyl tRNA biosynthesis pathway
 aminoacyl.metabs.AT<-factor(c("Glycine", "L-Serine", "L-Threonine", "L-Proline"))
 for (metabolite in aminoacyl.metabs.AT){
-  mypath<-file.path("aminoacyl", paste("ATboxplot_",metabolite, ".jpg", sep=""))
+  mypath <- paste(gt_figures, "aminoacyl_ATboxplot_",metabolite, ".jpg", sep="")
   jpeg(file=mypath)
   temp.data2<-y5[which(y5$Match==metabolite),]
   boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite),cex.axis=1.5, cex.names=1.5,
@@ -282,7 +284,7 @@ setwd(gt_figures)
 # in Aminoacyl tRNA biosynthesis pathway
 purine.metabs.AT<-as.factor(c("Guanosine", "Inosine", "adenosine", "Glycine"))
 for (metabolite in purine.metabs.AT){
-  mypath<-file.path("purine", paste("ATboxplot_",metabolite, ".jpg", sep=""))
+  mypath<-paste(gt_figures, "purine_ATboxplot_",metabolite, ".jpg", sep="")
   jpeg(file=mypath)
   temp.data2<-y5[which(y5$Match==metabolite),]
   boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite), cex.axis=1.5, cex.names=1.5,
@@ -299,7 +301,7 @@ setwd(gt_figures)
 # in Aminoacyl tRNA biosynthesis pathway
 glycine.metabs.AT<-as.factor(c("L-Threonine", "Glycine", "L-Serine"))
 for (metabolite in glycine.metabs.AT){
-  mypath<-file.path("glycine", paste("ATboxplot_",metabolite, ".jpg", sep=""))
+  mypath<-paste(gt_figures, "glycine_ATboxplot_",metabolite, ".jpg", sep="")
   jpeg(file=mypath)
   temp.data2<-y5[which(y5$Match==metabolite),]
   boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite), 
@@ -318,7 +320,7 @@ purine2.metabs.at<-as.factor(c("Inosine",  "Glycine", "adenosine",
 #setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots/")
 setwd(gt_figures)
 for (metabolite in purine2.metabs.at){
-  mypath<-file.path("purineagain2", paste("ATboxplot_",metabolite, ".jpg", sep=""))
+  mypath<-paste(gt_figures "purineagain2_ATboxplot_",metabolite, ".jpg", sep="")
   jpeg(file=mypath)
   temp.data2<-y5[which(y5$Match==metabolite),]
   boxplot(temp.data2$value~temp.data2$class, cex.axis=1.5, cex.names=1.5,
