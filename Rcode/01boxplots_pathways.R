@@ -320,7 +320,7 @@ purine2.metabs.at<-as.factor(c("Inosine",  "Glycine", "adenosine",
 #setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures/boxplots/")
 setwd(gt_figures)
 for (metabolite in purine2.metabs.at){
-  mypath<-paste(gt_figures "purineagain2_ATboxplot_",metabolite, ".jpg", sep="")
+  mypath<-paste(gt_figures, "purineagain2_ATboxplot_", metabolite, ".jpg", sep="")
   jpeg(file=mypath)
   temp.data2<-y5[which(y5$Match==metabolite),]
   boxplot(temp.data2$value~temp.data2$class, cex.axis=1.5, cex.names=1.5,
