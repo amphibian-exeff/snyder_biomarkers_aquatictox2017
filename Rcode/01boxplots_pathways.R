@@ -51,8 +51,10 @@ head(x3)
 # box plots for all doses TOF ID
 unique.metabolites<-unique(x3$mattID1)
 for (metabolite in unique.metabolites){
+  print(metabolite)
   temp.data<-x3[which(x3$mattID1==metabolite),]
-  boxplot(temp.data$value~temp.data$"class$V1", main=paste(metabolite))
+  #colnames(temp.data)[2] = "classV1"
+  boxplot(temp.data$value ~ temp.data$"class$V1", main=metabolite)
 }
 #subset dataset to control and highest dose
 xc1250<-subset(x3,x3$`class$V1`=="1" | x3$`class$V1`=="5" )
@@ -61,6 +63,7 @@ dim(xc1250)
 # boxplot for control and 1250 dose TOF ID
 unique.metabolites<-unique(x3$mattID1)
 for (metabolite in unique.metabolites){
+  print(metabolite)
   temp.data<-xc1250[which(xc1250$mattID1==metabolite),]
   boxplot(temp.data$value~temp.data$"class$V1", main=paste(metabolite))
 }
@@ -81,12 +84,12 @@ xc1250b<-subset(x4,x4$`class$V1`=="1" | x4$`class$V1`=="5" )
 #setwd("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/results/figures")
 gt_boxplots <- paste(gt_figures, "GT_boxplots120315.pdf", sep="")
 pdf(gt_boxplots)
-# boxplot for control and 1250 dose TOF ID
-unique.metabolites<-unique(xc1250b$KeggMatch)
-for (metabolite in unique.metabolites){
-  temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
-  boxplot(temp.data$value~temp.data$"class$V1", main=paste(metabolite))
-}
+  # boxplot for control and 1250 dose TOF ID
+  unique.metabolites<-unique(xc1250b$KeggMatch)
+  for (metabolite in unique.metabolites){
+    temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
+    boxplot(temp.data$value~temp.data$"class$V1", main=paste(metabolite))
+  }
 dev.off()
 ##################################################################################
 #### plot individual box plots for metabolites in top pathways from overlap GT and AT
@@ -100,13 +103,16 @@ aminoacyl.metabs.gt<-as.factor(c("L-Asparagine", "L-Aspartic acid", "Glycine", "
                 "L-Tyrosine", "L-Tryptophan", "L-Proline", "L-Leucine"))
 
 for (metabolite in aminoacyl.metabs.gt){
+  print(metabolite)
   mypath <- paste(gt_figures, "aminoacyl_GTboxplot_", metabolite, ".jpg", sep="")
   jpeg(file=mypath)
-  temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
-  boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,
-          las=2, col=c("grey","grey"),main=paste(metabolite))
+    if(length(which(xc1250b$KeggMatch==metabolite))>0){
+      temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
+      boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,
+              las=2, col=c("grey","grey"),main=paste(metabolite))
+    }
   dev.off()
-  }
+}
 #dev.off()
 
 #box plots for purine metabolism
@@ -119,11 +125,13 @@ purine.metabs.gt<-as.factor(c("Urea", "Glycine", "Uric acid", "Inosine", "Adenos
 for (metabolite in purine.metabs.gt){
   mypath <- paste(gt_figures, "purine_GTboxplot_",metabolite, ".jpg", sep="")
   jpeg(file=mypath)
-  temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
-  boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,
-          las=2, col=c("grey","grey"),main=paste(metabolite))
-  dev.off()
+  if(length(which(xc1250b$KeggMatch==metabolite))>0){
+    temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
+    boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,
+            las=2, col=c("grey","grey"),main=paste(metabolite))
   }
+  dev.off()
+}
 #dev.off()
 
 # box plots for glycine, serine, and threonine metabolism
@@ -135,11 +143,13 @@ glycine.metabs.GT<-as.factor(c("L-Tryptophan", "L-Serine", "Glycine", "L-Threoni
 # in glycine metabolism biosynthesis pathway
 for (metabolite in glycine.metabs.GT){
   mypath <- paste(gt_figures, "glycine_GTboxplot_",metabolite, ".jpg", sep="")
-  jpeg(file=mypath)
-  temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
-  boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,las=2, 
-          col=c("grey","grey"), main=paste(metabolite))
-  dev.off()
+  if(length(which(xc1250b$KeggMatch==metabolite))>0){
+    jpeg(file=mypath)
+      temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
+      boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,las=2, 
+              col=c("grey","grey"), main=paste(metabolite))
+    dev.off()
+  }
 }
 #dev.off()
 
@@ -154,11 +164,13 @@ purine2.metabs.gt<-as.factor(c("Uric acid", "Inosine", "Adenosine", "Glycine",
 # in purine metabolism biosynthesis pathway
 for (metabolite in purine2.metabs.gt){
   mypath <- paste(gt_figures, "purineagain_GTboxplot_",metabolite, ".jpg", sep="")
-  jpeg(file=mypath)
-  temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
-  boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,
-          las=2, col=c("grey","grey"), main=paste(metabolite))
-  dev.off()
+  if(length(which(xc1250b$KeggMatch==metabolite))>0){
+    jpeg(file=mypath)
+      temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
+      boxplot(temp.data$value~temp.data$"class$V1", cex.axis=1.5, cex.names=1.5,
+              las=2, col=c("grey","grey"), main=paste(metabolite))
+    dev.off()
+  }
 }
 
 
@@ -173,7 +185,9 @@ purine2.metabs.gt<-as.factor(c("Glycine", "Uric acid", "Inosine", "Adenosine",
                                "Ornithine", "Uridine", "Urea"))
 for (metabolite in purine2.metabs.gt){
   temp.data<-xc1250b[which(xc1250b$KeggMatch==metabolite),]
-  boxplot(temp.data$value~temp.data$"class$V1", main=paste(metabolite))
+  if(length(which(xc1250b$KeggMatch==metabolite))>0){
+    boxplot(temp.data$value~temp.data$"class$V1", main=paste(metabolite))
+  }
 }
 dev.off()
 ####################### testing
@@ -184,11 +198,21 @@ dev.off()
 #View(AT_bin_ID_sim)
 #AT200bin_IDFinal_sim_1201315 <- read.csv("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/xcms/at_r4_tof_all_fold/AT200bin_IDFinal_sim_1201315.csv")
 #names(AT200bin_IDFinal_sim_1201315)
-SVMrank4ID_atp1026154MattID <- read.csv("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/xcms/at_r4_tof_all_fold/SVMrank4ID_atp1026154MattID.csv")
-View(SVMrank4ID_atp1026154MattID)
+
+#SVMrank4ID_atp1026154MattID <- read.csv("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/xcms/at_r4_tof_all_fold/SVMrank4ID_atp1026154MattID.csv")
+svm_class <- paste(gt_data, "SVMrank4ID_atp1026154MattID.csv", sep="")
+SVMrank4ID_atp1026154MattID <- read.csv(svm_class)
+#View(SVMrank4ID_atp1026154MattID)
+
 # import pre-processed bin data 
-class <- read.csv("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/xcms/at_r4_tof_all_fold/MUMA_allpeaks061615/WorkDir_allmz_wooutlier/Preprocessing_Data_a/class.csv")
-ProcessedTable <- read.csv("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/xcms/at_r4_tof_all_fold/MUMA_allpeaks061615/WorkDir_allmz_wooutlier/Preprocessing_Data_a/ProcessedTable.csv")
+#class <- read.csv("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/xcms/at_r4_tof_all_fold/MUMA_allpeaks061615/WorkDir_allmz_wooutlier/Preprocessing_Data_a/class.csv")
+#file_class <- paste(gt_data, "class.csv", sep="")
+#class <- read.csv(file_class)
+
+#ProcessedTable <- read.csv("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/xcms/at_r4_tof_all_fold/MUMA_allpeaks061615/WorkDir_allmz_wooutlier/Preprocessing_Data_a/ProcessedTable.csv")
+#file_processed <- paste(gt_data, "ProcessedTable.csv", sep="")
+#ProcessedTable <- read.csv(file_processed)
+
 data.at<-cbind(class$V1, ProcessedTable)
 #subset data by the 200 top ranked bins with SVM-RFE
 data.at.sub <- data.at[,names(data.at) %in% SVMrank4ID_atp1026154MattID$peaks3 ]
@@ -196,21 +220,21 @@ dim(data.at.sub)
 # add class and name column back
 head(names(data.at.sub))
 data.at.sub2<-cbind(data.at$X,data.at$`class$V1`,  data.at.sub)
-View(data.at.sub2)
+#View(data.at.sub2)
 # transform data from wide form to long form using lib(reshape2)
 names(data.at.sub2)
 data.at.r<-melt(data.at.sub2, id.vars=c("data.at$`class$V1`", "data.at$X"))
-View(data.at.r)
+#View(data.at.r)
 #rename retention time mass fragment bins with metabolite ID with merge
 data.at.r2<-merge(data.at.r,SVMrank4ID_atp1026154MattID, by.x="variable", by.y="peaks3" )
-View(data.at.r2)
+#View(data.at.r2)
 dim(data.at.r2)
 #test<-data.at.r2[which(data.at.r2$MattID1=="l-proline"),]
 
 #drop bins with similiarity value <700
 y3<-data.at.r2[data.at.r2$SimMatt1>699,]
 dim(y3)
-View(y3)
+#View(y3)
 #rename column
 names(y3)[2]<-"class"
 names(y3)
@@ -220,26 +244,32 @@ names(y3)
 # box plots for all doses TOF ID
 unique.metabolites<-unique(y3$MattID1)
 for (metabolite in unique.metabolites){
-  temp.data<-y3[which(y3$MattID1==metabolite),]
-  boxplot(temp.data$value~temp.data$class, main=paste(metabolite))
+  if(length(which(y3$MattID1==metabolite))>0){
+    temp.data<-y3[which(y3$MattID1==metabolite),]
+    boxplot(temp.data$value~temp.data$class, main=paste(metabolite))
+  }
 }
 
 #subset dataset to control and highest dose
 y4<-subset(y3,y3$class =="1" | y3$class=="5" )
-View(y4)
+#View(y4)
 dim(y4)
 # boxplot for control and 1250 dose TOF ID
 unique.metabolites<-unique(y4$MattID1)
 for (metabolite in unique.metabolites){
-  temp.data<-y4[which(y4$MattID1==metabolite),]
-  boxplot(temp.data$value~temp.data$class, main=paste(metabolite))
+  if(length(which(y4$MattID1==metabolite))>0){
+    temp.data<-y4[which(y4$MattID1==metabolite),]
+    boxplot(temp.data$value~temp.data$class, main=paste(metabolite))
+  }
 }
 #test<-y4[which(y4$MattID1=="l-proline"),]
 
 #rename metabolites based on KEGG names
 #import csv for name translation
-AT_Name_Kegg_match120215 <- read.csv("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/xcms/at_r4_tof_all_fold/AT_Name_Kegg_match120215.csv")
-View(AT_Name_Kegg_match120215)
+#AT_Name_Kegg_match120215 <- read.csv("~/Dropbox/amphib_metabolomics/DATA/toad_gt_stage22_round4/xcms/at_r4_tof_all_fold/AT_Name_Kegg_match120215.csv")
+mypath = paste(gt_data, "AT_Name_Kegg_match120215.csv", sep="")
+AT_Name_Kegg_match120215 = read.csv(mypath)
+#View(AT_Name_Kegg_match120215)
 y5<-merge(y4, AT_Name_Kegg_match120215, by.x = "MattID1", by.y = "Query" )
 #View(y5)
 #print pdf of box plots AT 
@@ -250,8 +280,10 @@ pdf(mypath)
 # boxplot for control and 1250 dose Kegg ID
 unique.metabolites<-unique(y5$Match)
 for (metabolite in unique.metabolites){
-  temp.data2<-y5[which(y5$Match==metabolite),]
-  boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite), is.null=TRUE)
+  if(length(which(y5$Match==metabolite))>0){
+    temp.data2<-y5[which(y5$Match==metabolite),]
+    boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite), is.null=TRUE)
+  }
 }
 dev.off()
 
@@ -268,12 +300,14 @@ setwd(gt_figures)
 aminoacyl.metabs.AT<-factor(c("Glycine", "L-Serine", "L-Threonine", "L-Proline"))
 for (metabolite in aminoacyl.metabs.AT){
   mypath <- paste(gt_figures, "aminoacyl_ATboxplot_",metabolite, ".jpg", sep="")
-  jpeg(file=mypath)
-  temp.data2<-y5[which(y5$Match==metabolite),]
-  boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite),cex.axis=1.5, cex.names=1.5,
-          las=2, is.null=TRUE)
-  dev.off()
+  if(length(which(y5$Match==metabolite))>0){
+    jpeg(file=mypath)
+      temp.data2<-y5[which(y5$Match==metabolite),]
+      boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite),cex.axis=1.5, cex.names=1.5,
+              las=2, is.null=TRUE)
+    dev.off()
   }
+}
 #dev.off()
 
 # box plots for purine metabolism AT
@@ -285,12 +319,14 @@ setwd(gt_figures)
 purine.metabs.AT<-as.factor(c("Guanosine", "Inosine", "adenosine", "Glycine"))
 for (metabolite in purine.metabs.AT){
   mypath<-paste(gt_figures, "purine_ATboxplot_",metabolite, ".jpg", sep="")
-  jpeg(file=mypath)
-  temp.data2<-y5[which(y5$Match==metabolite),]
-  boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite), cex.axis=1.5, cex.names=1.5,
-          las=2, is.null=TRUE)
-  dev.off()
+  if(length(which(y5$Match==metabolite))>0){
+    jpeg(file=mypath)
+      temp.data2<-y5[which(y5$Match==metabolite),]
+      boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite), cex.axis=1.5, cex.names=1.5,
+              las=2, is.null=TRUE)
+    dev.off()
   }
+}
 #dev.off()
 
 # box plots for glycine metabolism AT
@@ -302,13 +338,15 @@ setwd(gt_figures)
 glycine.metabs.AT<-as.factor(c("L-Threonine", "Glycine", "L-Serine"))
 for (metabolite in glycine.metabs.AT){
   mypath<-paste(gt_figures, "glycine_ATboxplot_",metabolite, ".jpg", sep="")
-  jpeg(file=mypath)
-  temp.data2<-y5[which(y5$Match==metabolite),]
-  boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite), 
-          names=c("Control", expression("1250" * ~mu~"g/L")), las=TRUE, cex.axis=1.5, cex.names=1.5,
-          is.null=TRUE)
-  dev.off()
+  if(length(which(y5$Match==metabolite))>0){
+    jpeg(file=mypath)
+      temp.data2<-y5[which(y5$Match==metabolite),]
+      boxplot(temp.data2$value~temp.data2$class, main=paste(metabolite), 
+              names=c("Control", expression("1250" * ~mu~"g/L")), las=TRUE, cex.axis=1.5, cex.names=1.5,
+              is.null=TRUE)
+    dev.off()
   }
+}
 #dev.off()
 
 ##### box plots for purine/arginine/urea metabolism from paper ####
@@ -321,11 +359,13 @@ purine2.metabs.at<-as.factor(c("Inosine",  "Glycine", "adenosine",
 setwd(gt_figures)
 for (metabolite in purine2.metabs.at){
   mypath<-paste(gt_figures, "purineagain2_ATboxplot_", metabolite, ".jpg", sep="")
-  jpeg(file=mypath)
-  temp.data2<-y5[which(y5$Match==metabolite),]
-  boxplot(temp.data2$value~temp.data2$class, cex.axis=1.5, cex.names=1.5,
-          las=2, col=c("grey","grey"), main=paste(metabolite))
-  dev.off()
+  if(length(which(y5$Match==metabolite))>0){
+    jpeg(file=mypath)
+    temp.data2<-y5[which(y5$Match==metabolite),]
+    boxplot(temp.data2$value~temp.data2$class, cex.axis=1.5, cex.names=1.5,
+            las=2, col=c("grey","grey"), main=paste(metabolite))
+    dev.off()
+  }
 }
 
 temp.data2<-y5[which(y5$Match=="adenosine"),] 
