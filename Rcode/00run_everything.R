@@ -8,3 +8,4 @@ gt_dir <- paste(gt_data, "gt_stage22_TOF041515/xcms_polar/results/", sep="")
 
 
 source(paste(gt_rcode, "01boxplots_pathways.R", sep=""))
+source(paste(gt_rcode, "02svm_atR4.R", sep=""))
