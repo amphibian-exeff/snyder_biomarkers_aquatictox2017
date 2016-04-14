@@ -13,11 +13,11 @@ XCMS of round 1 and round 3 data combined for Toad Stage 22
 source("https://bioconductor.org/biocLite.R")
 biocLite("multtest")
 library(xcms)
-library(faahKO)
-library(preprocessCore)
-library(clusterSim)
-library(MetabolAnalyze)
-library(mixOmics)
+biocLite("faahKO")
+biocLite("preprocessCore")
+biocLite("clusterSim")
+biocLite("MetabolAnalyze")
+biocLite("mixOmics")
 ```
 
 ```{r echo=FALSE, results='hide', message=FALSE}
