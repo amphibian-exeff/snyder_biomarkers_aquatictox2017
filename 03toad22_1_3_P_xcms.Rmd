@@ -21,6 +21,7 @@ biocLite("mixOmics")
 ```
 
 ```{r echo=FALSE, results='hide', message=FALSE}
+sys.frame(0)$ofile
 
 #### read in and format data ####
 if(Sys.info()[4]=="DC2626UTPURUCKE"){
@@ -28,7 +29,7 @@ metdir2<-"C://stp_drop//Dropbox//amphib_metabolomics//DATA//toad_stage22_1_3_p//
 cdf.path<-setwd(metdir2)
 }
 
-if(Sys.info()[4]=="stp-air.local"){
+if(Sys.info()[4] == "stp-air.local"){
   metdir2<-path.expand("~/stp_drop/Dropbox/amphib_metabolomics/DATA/toad_stage22_1_3_p")
   cdf.path<-setwd(metdir2)
 }
