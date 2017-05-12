@@ -1,0 +1,51 @@
+Data files gt_t_out.txt, atall_t_out.txt, ProcessedTable_AT.txt, ProcessedTable_GT.txt, ID_METABOLITE_MattFinalID2_112315.txt, and SVMrank4ID_atp1026154MattID.txt, GT_ID_Kegg_120215.csv, AT_Name_Kegg_match120215.csv, class_AT.csv, and class_GT.csv were used in this manuscript.
+
+gt_t_out.txt - Abundance values for peaks from GC/TOF for Hyla versicolor tadpoles
+Samples: Name of sample
+Class: Treatment level (1=control, 2=10 ug/L Atrazine, 3=50 ug/L Atrazine, 4=250 ug/L Atrazine, 5=1250 ug/L Atrazine)
+"8.1"... "2502": GC/MS retention times (min.) aligned by XCMS
+
+atall_t_out.txt - Abundance values for peaks from GC/TOF processed by XCMS for Anaxyrus americanus tadpoles
+Samples: Name of sample
+Class: Treatment level (1=control, 2=10 ug/L Atrazine, 3=50 ug/L Atrazine, 4=250 ug/L Atrazine, 5=1250 ug/L Atrazine)"
+"8.1"... "2502": XCMS ID for peak/retention time 
+
+ProcessedTable_AT.txt - GC/MS data post-processing with MUMA package for Anaxyrus americanus tadpoles
+Sample: sample ID
+"M120528_1"... "M466T13_1": XCMS peak IDs
+
+ProcessedTable_GT.txt - GC/MS data post-processing with MUMA package for Hyla versicolor tadpoles
+Sample: sample ID
+"M372T29"... "M481T29": XCMS peak ID
+
+ID_METABOLITE_MattFinalID2_112315.txt - table with abundance values to create boxplot for each identified metabolite for Hyla versicolor
+peaks3: XCMS peak ID
+mattID1: metabolite identified for peak
+sim1: similarity value to metabolite library
+
+SVMrank4ID_atp1026154MattID.txt - table with abundance values to create boxplot for each identified metabolite for Anaxyrus americanus
+rtmed: retention time from GC TOF 
+peaks3: XCMS peak ID
+MattID1: metabolite identified for peak
+SimMatt1: similarity value to metabolite library
+
+GT_ID_Kegg_120215.csv - table used to convert metabolite names to standard KEGG names for H. versicolor biomarkers
+mattID1: metabolite ID from GC/TOF library
+KeggMatch: standard name for metabolite from KEGG database
+
+AT_Name_Kegg_match120215.csv - table used to convert metabolite names to standard KEGG names for A. americanus biomarkers
+Query: metabolite ID from GC/TOF library
+Match: standard name for metabolite from KEGG database
+
+class_at.csv- Used to identify treatment group in MUMA processed data for A. americanus
+V1: Treatment class identifer for ProcessedTable_AT.csv
+
+class_gt.csv- Used to identify treatment group in MUMA processed data for H. versicolor
+V1: Treatment class identifer for ProcessedTable_GT.csv
+
+
+
+
+
+
+
