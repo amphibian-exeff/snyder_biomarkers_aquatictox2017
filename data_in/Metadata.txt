@@ -1,6 +1,17 @@
-Data files gt_t_out.txt, atall_t_out.txt, ProcessedTable_AT.txt, ProcessedTable_GT.txt, ID_METABOLITE_MattFinalID2_112315.txt, and SVMrank4ID_atp1026154MattID.txt, GT_ID_Kegg_120215.csv, AT_Name_Kegg_match120215.csv, class_AT.csv, and class_GT.csv were used in this manuscript.
+Data files gt_t_out.txt, atall_t_out.txt, ProcessedTable_AT.txt, ProcessedTable_GT.txt, ID_METABOLITE_MattFinalID2_112315.txt, 
+and SVMrank4ID_atp1026154MattID.txt, GT_ID_Kegg_120215.csv, AT_Name_Kegg_match120215.csv, class_AT.csv, and class_GT.csv were 
+used in this manuscript.
 
-We relied on the MUMA package for metabolite identification. The metabolite structures were collected mainly from public repositories such as LIPID MAPS (www.lipidmaps.org), ChEBI (www.ebi.ac.uk/chebi), HMDB (www.hmdb.ca), BMRB (www.bmrb.wisc.edu), PubChem (http://pubchem.ncbi.nlm.nih.gov) and KEGG (www.genome.jp/kegg/). Additionally, the metabolite structure database contains structures of metabolites identified by the data depositors in their metabolomics experiments. In MUMA, in addition to curation of metabolite structures and assignment of common properties such as name, systematic name, exact mass and molecular formula, the metabolites are classified either using the LIPID MAPS classification systems for lipids or by the ClassyFire classification system (Feunang, Y.D. and Wishart, D.S. Unpublished work), a tool for automated structure-based taxonomic classification of chemical entities. Each metabolite in the structure database is also mapped to the following external database IDs, to the extent possible: PubChem CID, LMSD ID, CHEBI ID, HMDB ID, Chemspider ID, METLIN ID, BMRB ID and MetaCyc ID. These approaches/database resources are common in this field.
+We relied on the MUMA package for metabolite identification. The metabolite structures were collected mainly from public 
+repositories such as LIPID MAPS (www.lipidmaps.org), ChEBI (www.ebi.ac.uk/chebi), HMDB (www.hmdb.ca), BMRB (www.bmrb.wisc.edu), 
+PubChem (http://pubchem.ncbi.nlm.nih.gov) and KEGG (www.genome.jp/kegg/). Additionally, the metabolite structure database 
+contains structures of metabolites identified by the data depositors in their metabolomics experiments. In MUMA, in addition 
+to curation of metabolite structures and assignment of common properties such as name, systematic name, exact mass and 
+molecular formula, the metabolites are classified either using the LIPID MAPS classification systems for lipids or by 
+the ClassyFire classification system (Feunang, Y.D. and Wishart, D.S. Unpublished work), a tool for automated structure-
+based taxonomic classification of chemical entities. Each metabolite in the structure database is also mapped to the 
+following external database IDs, to the extent possible: PubChem CID, LMSD ID, CHEBI ID, HMDB ID, Chemspider ID, METLIN 
+ID, BMRB ID and MetaCyc ID. These approaches/database resources are common in this field.
 
 gt_t_out.txt - Abundance values for peaks from GC/TOF for Hyla versicolor tadpoles
 Samples: Name of sample
@@ -20,12 +31,14 @@ ProcessedTable_GT.txt - GC/MS data post-processing with MUMA package for Hyla ve
 Sample: sample ID
 "M372T29"... "M481T29": XCMS peak ID
 
-ID_METABOLITE_MattFinalID2_112315.txt - table with abundance values to create boxplot for each identified metabolite for Hyla versicolor
+ID_METABOLITE_MattFinalID2_112315.txt - table with abundance values to create boxplot for 
+each identified metabolite for Hyla versicolor
 peaks3: XCMS peak ID
 mattID1: metabolite identified for peak
 sim1: similarity value to metabolite library
 
-SVMrank4ID_atp1026154MattID.txt - table with abundance values to create boxplot for each identified metabolite for Anaxyrus americanus
+SVMrank4ID_atp1026154MattID.txt - table with abundance values to create boxplot for 
+each identified metabolite for Anaxyrus americanus
 rtmed: retention time from GC TOF 
 peaks3: XCMS peak ID
 MattID1: metabolite identified for peak
